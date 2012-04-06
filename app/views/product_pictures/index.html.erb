@@ -5,6 +5,8 @@
       <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
       <span class="btn success fileinput-button">
         <span><%= t('pictures.add_files') %>...</span>
+        <%= f.text_field :title %>
+        <%= f.text_area :description %>
         <%= f.file_field :picture %>
       </span>
       <button type="submit" class="btn primary start"><%= t('pictures.start_upload') %></button>
@@ -77,7 +79,6 @@
   {% } %}
 </script>
 
-
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <%= javascript_include_tag 'jquery.ui.widget.js' %>
 <!-- The Templates and Load Image plugins are included for the FileUpload user interface -->
@@ -90,23 +91,22 @@
 <!-- add include_tag js files to config.assets.precompile in ...environments/production.rb if you have it in vendor/ assets -->
 
 <script type="text/javascript" charset="utf-8">
-    $(function () {
-        // Initialize the jQuery File Upload widget:
-        $('#fileupload').fileupload();
-        // 
-        // Load existing files:
-        $.getJSON($('#fileupload').prop('action'), function (files) {
-          var fu = $('#fileupload').data('fileupload'), 
-            template;
-          fu._adjustMaxNumberOfFiles(-files.length);
-          template = fu._renderDownload(files)
-            .appendTo($('#fileupload .files'));
-          // Force reflow:
-          fu._reflow = fu._transition && template.length &&
-            template[0].offsetWidth;
-          template.addClass('in');
-          $('#loading').remove();
-        });
+  $(function () {
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload();
 
+    // Load existing files:
+    $.getJSON($('#fileupload').prop('action'), function (files) {
+      var fu = $('#fileupload').data('fileupload'), 
+        template;
+      fu._adjustMaxNumberOfFiles(-files.length);
+      template = fu._renderDownload(files)
+        .appendTo($('#fileupload .files'));
+      // Force reflow:
+      fu._reflow = fu._transition && template.length &&
+        template[0].offsetWidth;
+      template.addClass('in');
+      $('#loading').remove();
     });
+  });
 </script>
