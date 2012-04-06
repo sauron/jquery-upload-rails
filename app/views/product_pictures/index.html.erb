@@ -1,26 +1,28 @@
 <h2>Products picture</h2>
 <%= form_for ProductPicture.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
   <div class="row">
-    <div class="span16 fileupload-buttonbar">
-      <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
-      <span class="btn success fileinput-button">
-        <span><%= t('pictures.add_files') %>...</span>
-        <%= f.text_field :title %>
-        <%= f.text_area :description %>
-        <%= f.file_field :picture %>
-      </span>
-      <button type="submit" class="btn primary start"><%= t('pictures.start_upload') %></button>
-      <button type="reset" class="btn info cancel"><%= t('pictures.cancel_upload') %></button>
-      <button type="button" class="btn danger delete"><%= t('pictures.delete_selected') %></button>
-      <input type="checkbox" class="toggle">
-    </div>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="row">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :rows => 5 %>
+  </div>
+  <div class="row">
+    <span><%= t('pictures.add_files') %>...</span>
+    <%= f.file_field :picture %>
   </div>
   <br>
   <div class="row">
-    <div class="span16">
-      <table class="zebra-striped"><tbody class="files"></tbody></table>
-      <div id="loading"> </div>
-    </div>
+    <button type="submit" class="btn primary start"><%= t('pictures.start_upload') %></button>
+    <button type="reset" class="btn info cancel"><%= t('pictures.cancel_upload') %></button>
+    <button type="button" class="btn danger delete"><%= t('pictures.delete_selected') %></button>
+    <input type="checkbox" class="toggle">
+  </div>
+  <br>
+  <div class="row">
+    <table class="zebra-striped"><tbody class="files"></tbody></table>
+    <div id="loading"> </div>
   </div>
 <% end %>
 <script>

@@ -1,0 +1,19 @@
+<%= form_for @product, :html => { :multipart => true } do |f| %>
+  <%= f.label :title %><br />
+  <%= f.text_field :title %>
+
+  <fieldset>
+    <%= f.fields_for :product_pictures do |picture| %>
+      <%= picture.label :title %><br />
+      <%= picture.text_field :title %>
+
+      <br />
+      <%= picture.label :description %><br />
+      <%= picture.text_area :description, :rows => 2 %>
+
+      <br />
+      <%= picture.label :picture %><br />
+      <%= picture.file_field :picture %>
+    <% end %>
+  </fieldset>
+<% end %>

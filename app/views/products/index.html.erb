@@ -1,2 +1,18 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<h1>Products lists</h1>
+<%= link_to "New Product", new_product_path %>
+<table>
+  <tbody>
+    <tr>
+      <td>Title</td>
+      <td>First Image</td>
+      <td></td>
+    </tr>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= image_tag(product.product_pictures.first.thumb('80x80#').url) if product.product_pictures %></td>
+        <td>Edit</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
